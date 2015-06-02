@@ -4,9 +4,138 @@
 {% block body_class %}tpl-fullwidth{% endblock %}
 
 {% block extend_base %}
+{% load sekizai_tags %}
 <div class="container">
-    {% block content %}
-        {% with 940 as width %}{% placeholder content %}{% endwith %}
-    {% endblock content %}
+
+<template class="cms-plugin-start cms-plugin-11"></template>
+
+    <p>hello world, <a href="#">This is a link</a></p>
+    <div class="alert alert-danger">
+        hello world
+    </div>
+    <ul class="list-group">
+        <template class="cms-plugin-start cms-plugin-22"></template>
+            <li class="list-group-item">
+                Cras justo odio
+            </li>
+        <template class="cms-plugin-end"></template>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+    <div class="spacer spacer-lg"></div>
+
+<template class="cms-plugin-end"></template>
+
+<div class="cms-plugin-overlays"></div>
+
+{% addtoblock "js" %}
+<script>
+jQuery(document).ready(function () {
+
+    Cl.content = {
+
+        init: function (data) {
+            var that = this;
+            this.overlays = [];
+            this.overlaysContainer = $('.cms-plugin-overlays');
+
+            $.each(data, function (index, item) {
+                that._preload(item);
+            });
+
+            this._load();
+        },
+
+        _preload: function (item) {
+            var startElement = this._templateFilter(item.plugin_id);
+            // var endElement = startElement.siblings('.cms-plugin-end');
+            var template = $('<div class="cms-plugin-overlay-' + item.plugin_id + '"></div>');
+            // attach data so it can later be retrieved
+            template.data(item);
+            // save for later injection
+            this.overlays.push(template);
+        },
+
+        _load: function () {
+            this.overlaysContainer.append(this.overlays);
+        },
+
+        _repaint: function () {
+
+        },
+
+        _templateFilter: function (id) {
+            return $('.cms-plugin-' + id);
+        }
+
+    };
+
+
+    Cl.content.init([
+        {
+            'plugin_id': '11',
+            'placeholder_id': '1'
+        },
+        {
+            'plugin_id': '22',
+            'placeholder_id': '2'
+        }
+    ]);
+
+/*
+    var area = $('.area-overlay');
+    var areaStart = $('.area-start');
+    var areaEnd = $('.area-end');
+
+    var posStart = areaStart.position();
+    var posEnd = areaEnd.position();
+
+    area.css({
+        'top': posStart.top,
+        'left': posStart.left,
+        'width': areaStart.outerWidth(true),
+        'height': posEnd.top - posStart.top + areaEnd.outerHeight(true)
+    });
+
+    area.on('click', function () {
+        //alert('dbclick');
+        // area.toggleClass('pointer');
+    });
+
+    $('body').on('dblclick', function (e) {
+        console.log(e);
+    });*/
+});
+</script>
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<style>
+.area-helper {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.area-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent;
+    border: 1px solid red;
+}
+.list-group li:first-child {
+    background: green !important;
+}
+template {
+    display: block;
+}
+.pointer {
+    pointer-events: none;
+}
+</style>
+{% endaddtoblock %}
+
 </div>
 {% endblock extend_base %}
