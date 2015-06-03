@@ -6,33 +6,43 @@
 {% block extend_base %}
 {% load sekizai_tags %}
 <div class="container">
+    <a href="#" class="btn btn-default js-btn-preview">Preview</a>
+    <a href="#" class="btn btn-primary js-btn-edit hidden">Continue Editing</a>
+</div>
 
-<template class="cms-plugin-start cms-plugin-11"></template>
+<div class="spacer spacer-xs"></div>
+
+<div class="container">
+
+<template class="js-js-cms-plugin-start js-cms-plugin-11"></template>
 
     <p>hello world, <a href="#">This is a link</a></p>
-    <template class="cms-plugin-start cms-plugin-44"></template>
+    <template class="js-js-cms-plugin-start js-cms-plugin-44"></template>
         <div class="alert alert-danger">
             hello world
         </div>
-    <template class="cms-plugin-end cms-plugin-44"></template>
-    <ul class="list-group">
-        <template class="cms-plugin-start cms-plugin-22"></template>
-            <li class="list-group-item">
+    <template class="js-cms-plugin-end js-cms-plugin-44"></template>
+    <ul class="list-group row">
+        <template class="js-js-cms-plugin-start js-cms-plugin-22"></template>
+            <li class="list-group-item col-md-12">
                 Cras justo odio
             </li>
-        <template class="cms-plugin-end cms-plugin-22"></template>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <template class="cms-plugin-start cms-plugin-33"></template>
-            <li class="list-group-item">Morbi leo risus</li>
-        <template class="cms-plugin-end cms-plugin-33"></template>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
+        <template class="js-cms-plugin-end js-cms-plugin-22"></template>
+        <li class="list-group-item col-md-12">Dapibus ac facilisis in</li>
+        <template class="js-js-cms-plugin-start js-cms-plugin-33"></template>
+            <li class="list-group-item col-md-12">Morbi leo risus</li>
+        <template class="js-cms-plugin-end js-cms-plugin-33"></template>
+        <li class="list-group-item col-md-12">Porta ac consectetur ac</li>
+        <li class="list-group-item col-md-12">Vestibulum at eros</li>
     </ul>
-    <div class="spacer spacer-lg"></div>
 
-<template class="cms-plugin-end cms-plugin-11"></template>
+    <template class="js-js-cms-plugin-start js-cms-plugin-55"></template>
+        <div class="spacer spacer-lg"></div>
+    <template class="js-cms-plugin-end js-cms-plugin-55"></template>
 
-<div class="cms-plugin-overlays"></div>
+<template class="js-cms-plugin-end js-cms-plugin-11"></template>
+
+<div class="js-cms-plugin-overlays"></div>
 
 {% addtoblock "js" %}
 <script>
@@ -43,7 +53,7 @@ jQuery(document).ready(function () {
         init: function (data) {
             var that = this;
             this.overlays = [];
-            this.overlaysContainer = $('.cms-plugin-overlays');
+            this.overlaysContainer = $('.js-cms-plugin-overlays');
             this.timer = function () {};
 
             $.each(data, function (index, item) {
@@ -51,10 +61,30 @@ jQuery(document).ready(function () {
             });
 
             this._load();
+            this._events();
+        },
+
+        _events: function () {
+            var that = this;
+            var preview = $('.js-btn-preview');
+            var edit = $('.js-btn-edit');
+
+            preview.add(edit).on('click', function (e) {
+                e.preventDefault();
+                that.overlaysContainer.toggleClass('js-hidden');
+                preview.toggleClass('hidden');
+                edit.toggleClass('hidden');
+            });
+        },
+
+        _load: function () {
+            this.overlaysContainer.append(this.overlays);
+
+            this.paint(true);
         },
 
         _preload: function (item) {
-            var template = $('<div class="cms-plugin-overlay cms-plugin-overlay-' + item.plugin_id + '"></div>');
+            var template = $('<div class="js-cms-plugin-overlay js-cms-plugin-overlay-' + item.plugin_id + '"></div>');
             // attach data so it can later be retrieved
             template.data(item);
             // attach events
@@ -65,19 +95,13 @@ jQuery(document).ready(function () {
             this.overlays.push(template);
         },
 
-        _load: function () {
-            this.overlaysContainer.append(this.overlays);
-
-            this.paint(true);
-        },
-
         paint: function (state) {
             var that = this;
 
             $.each(this.overlays, function (index, item) {
                 var overlay = item;
-                var pluginStart = $('.cms-plugin-start.cms-plugin-' + item.data().plugin_id);
-                var pluginEnd = pluginStart.nextAll('.cms-plugin-end.cms-plugin-' + item.data().plugin_id);
+                var pluginStart = $('.js-js-cms-plugin-start.js-cms-plugin-' + item.data().plugin_id);
+                var pluginEnd = pluginStart.nextAll('.js-cms-plugin-end.js-cms-plugin-' + item.data().plugin_id);
 
                 // it can be that the end of the element is also the start
                 // in this case we only have one element
@@ -129,7 +153,7 @@ jQuery(document).ready(function () {
         },
 
         _templateFilter: function (id) {
-            return $('.cms-plugin-' + id);
+            return $('.js-cms-plugin-' + id);
         }
 
     };
@@ -145,15 +169,19 @@ jQuery(document).ready(function () {
         },
         {
             'plugin_id': '22',
-            'placeholder_id': '2'
+            'placeholder_id': '1'
         },
         {
             'plugin_id': '33',
-            'placeholder_id': '3'
+            'placeholder_id': '2'
         },
         {
             'plugin_id': '44',
-            'placeholder_id': '4'
+            'placeholder_id': '2'
+        },
+        {
+            'plugin_id': '55',
+            'placeholder_id': '3'
         }
     ]);
 });
@@ -163,31 +191,32 @@ jQuery(document).ready(function () {
 {% addtoblock "css" %}
 <style>
 /* core rules */
-.cms-plugin-overlays {
+template {
+    display: block;
+}
+.js-cms-plugin-overlays {
     position: absolute;
     left: 0;
     top: 0;
 }
-.cms-plugin-overlay {
+.js-cms-plugin-overlay {
     position: absolute;
     left: 0;
     top: 0;
     background: rgba(0,255,0,0.2);
 }
-.cms-plugin-overlay:hover {
+.js-cms-plugin-overlay:hover {
     border: 1px solid red;
+}
+.js-hidden {
+    display: none;
 }
 
 /* test cases */
 .list-group li:first-child {
     background: green !important;
 }
-template {
-    display: block;
-}
-.pointer {
-    pointer-events: none;
-}
+
 </style>
 {% endaddtoblock %}
 
