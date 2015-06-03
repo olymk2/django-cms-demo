@@ -10,23 +10,27 @@
 <template class="cms-plugin-start cms-plugin-11"></template>
 
     <p>hello world, <a href="#">This is a link</a></p>
-    <div class="alert alert-danger">
-        hello world
-    </div>
+    <template class="cms-plugin-start cms-plugin-44"></template>
+        <div class="alert alert-danger">
+            hello world
+        </div>
+    <template class="cms-plugin-end cms-plugin-44"></template>
     <ul class="list-group">
         <template class="cms-plugin-start cms-plugin-22"></template>
             <li class="list-group-item">
                 Cras justo odio
             </li>
-        <template class="cms-plugin-end"></template>
+        <template class="cms-plugin-end cms-plugin-22"></template>
         <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
+        <template class="cms-plugin-start cms-plugin-33"></template>
+            <li class="list-group-item">Morbi leo risus</li>
+        <template class="cms-plugin-end cms-plugin-33"></template>
         <li class="list-group-item">Porta ac consectetur ac</li>
         <li class="list-group-item">Vestibulum at eros</li>
     </ul>
     <div class="spacer spacer-lg"></div>
 
-<template class="cms-plugin-end"></template>
+<template class="cms-plugin-end cms-plugin-11"></template>
 
 <div class="cms-plugin-overlays"></div>
 
@@ -40,6 +44,7 @@ jQuery(document).ready(function () {
             var that = this;
             this.overlays = [];
             this.overlaysContainer = $('.cms-plugin-overlays');
+            this.timer = function () {};
 
             $.each(data, function (index, item) {
                 that._preload(item);
@@ -51,19 +56,57 @@ jQuery(document).ready(function () {
         _preload: function (item) {
             var startElement = this._templateFilter(item.plugin_id);
             // var endElement = startElement.siblings('.cms-plugin-end');
-            var template = $('<div class="cms-plugin-overlay-' + item.plugin_id + '"></div>');
+            var template = $('<div class="cms-plugin-overlay cms-plugin-overlay-' + item.plugin_id + '"></div>');
             // attach data so it can later be retrieved
             template.data(item);
+            // attach events
+            template.on('click', function () {
+                console.log(template.data());
+            });
             // save for later injection
             this.overlays.push(template);
         },
 
         _load: function () {
             this.overlaysContainer.append(this.overlays);
+
+            this.paint(true);
+        },
+
+        paint: function (state) {
+            var that = this;
+
+            $.each(this.overlays, function (index, item) {
+                var overlay = item;
+                var pluginStart = $('.cms-plugin-start.cms-plugin-' + item.data().plugin_id);
+                var pluginEnd = pluginStart.nextAll('.cms-plugin-end.cms-plugin-' + item.data().plugin_id);
+
+                var posStart = pluginStart.position();
+                var posEnd = pluginEnd.position();
+
+                overlay.css({
+                    'top': posStart.top,
+                    'left': posStart.left,
+                    'width': pluginStart.outerWidth(true),
+                    'height': posEnd.top - posStart.top + pluginEnd.outerHeight(true)
+                });
+            });
+
+            if (state) {
+                $(window).on('resize.cms scroll.cms', function () {
+                    clearTimeout(that.timer);
+
+                    that.overlaysContainer.addClass('hidden');
+                    that.timer = setTimeout(function () {
+                        that._repaint();
+                        that.overlaysContainer.removeClass('hidden');
+                    }, 200);
+                });
+            }
         },
 
         _repaint: function () {
-
+            this.paint(false);
         },
 
         _templateFilter: function (id) {
@@ -72,7 +115,10 @@ jQuery(document).ready(function () {
 
     };
 
-
+    /*
+     * We have to load the data through JSON format so it's sleek and faster
+     * Instead of creating instances for everything
+     */
     Cl.content.init([
         {
             'plugin_id': '11',
@@ -81,50 +127,39 @@ jQuery(document).ready(function () {
         {
             'plugin_id': '22',
             'placeholder_id': '2'
+        },
+        {
+            'plugin_id': '33',
+            'placeholder_id': '3'
+        },
+        {
+            'plugin_id': '44',
+            'placeholder_id': '4'
         }
     ]);
-
-/*
-    var area = $('.area-overlay');
-    var areaStart = $('.area-start');
-    var areaEnd = $('.area-end');
-
-    var posStart = areaStart.position();
-    var posEnd = areaEnd.position();
-
-    area.css({
-        'top': posStart.top,
-        'left': posStart.left,
-        'width': areaStart.outerWidth(true),
-        'height': posEnd.top - posStart.top + areaEnd.outerHeight(true)
-    });
-
-    area.on('click', function () {
-        //alert('dbclick');
-        // area.toggleClass('pointer');
-    });
-
-    $('body').on('dblclick', function (e) {
-        console.log(e);
-    });*/
 });
 </script>
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
 <style>
-.area-helper {
+/* core rules */
+.cms-plugin-overlays {
     position: absolute;
     left: 0;
     top: 0;
 }
-.area-overlay {
+.cms-plugin-overlay {
     position: absolute;
     left: 0;
     top: 0;
-    background: transparent;
+    background: rgba(0,255,0,0.2);
+}
+.cms-plugin-overlay:hover {
     border: 1px solid red;
 }
+
+/* test cases */
 .list-group li:first-child {
     background: green !important;
 }
@@ -139,3 +174,8 @@ template {
 
 </div>
 {% endblock extend_base %}
+
+
+// test for z-index with multiple overlays
+// clickable test
+
