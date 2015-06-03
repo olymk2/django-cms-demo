@@ -54,8 +54,6 @@ jQuery(document).ready(function () {
         },
 
         _preload: function (item) {
-            var startElement = this._templateFilter(item.plugin_id);
-            // var endElement = startElement.siblings('.cms-plugin-end');
             var template = $('<div class="cms-plugin-overlay cms-plugin-overlay-' + item.plugin_id + '"></div>');
             // attach data so it can later be retrieved
             template.data(item);
@@ -81,6 +79,25 @@ jQuery(document).ready(function () {
                 var pluginStart = $('.cms-plugin-start.cms-plugin-' + item.data().plugin_id);
                 var pluginEnd = pluginStart.nextAll('.cms-plugin-end.cms-plugin-' + item.data().plugin_id);
 
+                // it can be that the end of the element is also the start
+                // in this case we only have one element
+                if (pluginEnd.length <= 0) {
+                    pluginEnd = pluginStart;
+                }
+
+                if (state) {
+                    // we need to remove the templates to restore the dom structure
+                    pluginStart.next().addClass(pluginStart.attr('class'));
+                    pluginEnd.prev().addClass(pluginEnd.attr('class'));
+                    // clear tree
+                    pluginStartTmp = pluginStart.next();
+                    pluginStart.remove();
+                    pluginStart = pluginStartTmp;
+                    pluginEndTmp = pluginEnd.prev();
+                    pluginEnd.remove();
+                    pluginEnd = pluginEndTmp;
+                }
+
                 var posStart = pluginStart.position();
                 var posEnd = pluginEnd.position();
 
@@ -93,6 +110,8 @@ jQuery(document).ready(function () {
             });
 
             if (state) {
+                // we need to reorder the element if we scroll or resize
+                // this can be resource heavy so we need some deferring
                 $(window).on('resize.cms scroll.cms', function () {
                     clearTimeout(that.timer);
 
