@@ -29,7 +29,8 @@ update:
 	-git pull
 	$(PIP) install -r requirements.txt
 	$(VENV); npm install
-	$(MANAGE) migrate --noinput
+	$(MANAGE) syncdb --noinput
+	$(MANAGE) migrate
 
 pulldata:
 	make database
