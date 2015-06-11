@@ -3,6 +3,7 @@ django-cms==3.1.0
 django-reversion==1.8.7             # not a part of django-cms core
 djangocms-text-ckeditor==2.5.2      # not a part of django-cms core
 psycopg2==2.6                       # required for django.db.backends.postgresql_psycopg2
+South==1.0.2
 
 # additional addons
 # use the bleeding-edge version for testing purposes

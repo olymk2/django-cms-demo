@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'menus',
     'sekizai',
     'reversion',
+    'south',
     # django CMS addons
     'djangocms_text_ckeditor',
     # > prerequisite addons requirements
