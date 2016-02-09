@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load staticfiles cms_tags menu_tags %}
+
+{% block content %}
+    <ul id="breadcrumb">
+        <li class="prefix">Sie sind hier:</li>
+        {% show_breadcrumb 2 "includes/menu/breadcrumb.html" %}
+    </ul>
+    <div id="stepnav">
+        <a class="mobile sidenav" href="#navi_div"><b>&equiv;</b> <em>Navigation</em></a>
+        <div id="unten_links">
+            <div id="navi_div" class="stepnav">
+                <ul id="navi_liste">
+                    {% show_menu 2 3 0 100 "includes/menu/submenu.html" %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/UdmComment-->
+    <div id="content">
+        <div class="article img-fullwidth" id="anker-0">
+            {% placeholder "content" or %}
+                <div class="eintrag l_text">
+                    {% include "includes/message-content.html" %}
+                </div>
+            {% endplaceholder %}
+        </div>
+    </div><!-- /content -->
+
+    <!--UdmComment-->
+    <div id="sidebar">
+        <div>
+            {% include "includes/message-sidebar.html" %}
+        </div>
+    </div><!-- /sidebar -->
+{% endblock content %}

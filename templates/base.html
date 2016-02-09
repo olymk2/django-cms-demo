@@ -1,0 +1,109 @@
+{% load i18n static cms_tags menu_tags sekizai_tags %}
+<!DOCTYPE html>
+<html class="no-js" lang="de">
+<head>
+    <title>{{ request.site.name }} | {% page_attribute page_title %}</title>
+    <meta name="robots" content="index,follow " />
+    <meta name="Date" content="2015-10-08" />
+    <link rel="SHORTCUT ICON" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lwl-video-js.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lwl.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fachbereich.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/complete.js' %}"></script>
+    <script src="{% static 'js/video.js' %}"></script>
+    <script src="{% static 'js/jquery.fancybox.js' %}"></script>
+    <script src="{% static 'js/main-slider.js' %}"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".gallery a, .gallery-item a, a.popup").fancybox({
+                type:"image",
+                helpers: {
+                    title: {
+                        type: 'inside'
+                    }
+                }
+            });
+        });
+    </script>
+
+    {% render_block "css" %}
+    {% render_block "js" %}
+    {% block extrahead %}{% endblock %}
+    {% block extrafoot %}{% endblock %}
+    {{ ALDRYN_SNAKE.render_tail }}
+    {{ ALDRYN_SNAKE.render_head }}
+</head>
+<body id="page" class="">
+{% cms_toolbar %}
+<div id="rahmen" class="page-der-lwl-im-ueberblick level-1">
+    <a class="skip" href="#mainnav" tabindex="1">Zur Hauptnavigation</a>
+    <a class="skip" href="#stepnav" tabindex="2">Zur Seitennavigation</a>
+    <a class="skip" href="#content" tabindex="3">Zum Inhalt</a>
+    <!--UdmComment-->
+    <div id="header">
+        <div id="lwl-header" class="custom">
+            <ul class="features">
+                <li class="mainnav-toggle first"><a class="mobile mainnav" href="#hauptmenue"><b>&equiv;</b> <em>Fachbereiche</em></a></li>
+                <li class="lang lang-plain"></li>
+                <li class="lang lang-sign"></li>
+                <li class="font-size"><a href="#"><span>Schriftgröße</span></a>
+                    <div class="font-size-info">Die Größe der Schrift und der Grafiken lässt sich sehr einfach über den Browser vergrößern oder verkleinern.
+                    Dazu einfach die STRG/CTRL-Taste gedrückt halten (Mac: &#8984;-Taste) und dann die Taste
+                    [+] (Plus) zum Vergrößern oder [&ndash;] (Minus) zum Verkleinern drücken.
+                    Mit der Kombination STRG (Mac: &#8984;-Taste) und 0 (Null) wird die Schriftgröße wieder auf die Standardeinstellungen zurückgesetzt.<br /><br /><a class="no-bg" href="#" onclick="return false();">[&#10799;] schließen</a></div>
+                </li>
+                <li class="search">
+                    <a href="#" class="show-search sprites"><span>Suche</span></a>
+                    <form method="get" action="suche/" class="main-form">
+                        <label for="mainform">Suche</label><input type="text" value="" placeholder="Suchbegriff eingeben" name="q" id="mainform" /><input class="submit" type="submit" value="›" />
+                    </form>
+                </li>
+            </ul>
+            <div id="col-logos">
+                <a class="logo-claim sprites" href="/" title="Zur Startseite des LWL"></a>
+                <a class="special sprites" href="/" title="Zum Info-Portal Richtung Inklusion"></a>
+            </div>
+            <div id="hauptmenue">
+                <ul id="mainnav">
+                    {% show_menu_below_id "main" 0 0 100 100 "includes/menu/mainnav.html" %}
+                </ul>
+            </div><!-- /hauptmenue -->
+        </div><!-- /lwl-header -->
+    </div><!-- /header -->
+
+    <div id="maincontent">
+        {% block content %}{% endblock content %}
+    </div>
+
+    <div id="footer" class="seitenfuss">
+        <ul id="imprint" class="imprint">
+            <li class="first copy">&copy; Landschaftsverband Westfalen-Lippe (LWL)</li>
+            <li class="second feat">
+                <ul>
+                    <!--htdig_noindex-->
+                    <li class="top"><a href="#rahmen"><span>Nach oben</span></a></li>
+                    <li class="print"><a href="print" rel="nofollow"><span>Seite drucken</span></a></li>
+                    <li class="err"><a href="reperr" rel="nofollow"><span>Fehler melden</span></a></li>
+                    <!--/htdig_noindex-->
+                </ul>
+            </li>
+            <li class="third info">
+                <ul>
+                    {% show_menu_below_id "footer" 0 0 100 100 "includes/menu/mainnav.html" %}
+                </ul>
+            </li>
+        </ul>
+    </div><!-- /footer -->
+    <!--/UdmComment-->
+</div><!-- /rahmen -->
+
+<!-- End Piwik Tracking Code-->
+</body>
+</html>

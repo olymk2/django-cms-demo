@@ -1,0 +1,20 @@
+{% load i18n menu_tags cache %}
+{# DOCS: http://django-cms.readthedocs.org/en/latest/advanced/templatetags.html#show-menu-examples #}
+
+{% for child in children %}
+<li class="child
+    {% if child.ancestor %} opennav{% endif %}
+    {% if child.selected %} active{% endif %}
+    {% if child.children and child.selected %} currentnav{% endif %}
+    {% if forloop.first %} first{% endif %}
+    {% if forloop.last %} last{% endif %}">
+        {% if child.selected %}<strong>{% else %}<a href="{{ child.get_absolute_url }}">{% endif %}
+            {{ child.get_menu_title }}
+        {% if child.selected %}</strong>{% else %}</a>{% endif %}
+    {% if child.children %}
+        <ul class="subnav-2">
+            {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
+        </ul>
+    {% endif %}
+</li>
+{% endfor %}

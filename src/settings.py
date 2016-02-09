@@ -79,17 +79,14 @@ INSTALLED_APPS = (
     # > prerequisites for aldryn-jobs
     'absolute',
     'emailit',
-    # > prerequisites for aldryn-forms
-    'captcha',
     # > addons
     'aldryn_bootstrap3',
     'aldryn_newsblog',
     'aldryn_style',
-    'aldryn_faq',
-    'aldryn_events',
-    'aldryn_jobs',
     'aldryn_forms',
     'aldryn_forms.contrib.email_notifications',
+#    'djangocms_video',
+    'aldryn_video',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -176,7 +173,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'de'
 
 TIME_ZONE = 'Europe/London'
 
@@ -216,7 +213,6 @@ CMS_PLACEHOLDER_CONF = {}
 # http://docs.django-cms.org/en/latest/topics/i18n.html
 
 LANGUAGES = (
-    ('en', _('English')),
     ('de', _('Deutsch')),
 )
 
@@ -226,11 +222,6 @@ PARLER_LANGUAGES = {
         'redirect_on_fallback': True,
     },
     1: [
-        {
-            'code': 'en',
-            'hide_untranslated': False,
-            'redirect_on_fallback': True,
-        },
         {
             'code': 'de',
             'hide_untranslated': False,
@@ -249,13 +240,6 @@ CMS_LANGUAGES = {
     1: [
         {
             'public': True,
-            'code': 'en',
-            'hide_untranslated': False,
-            'name': _('English'),
-            'redirect_on_fallback': True,
-        },
-        {
-            'public': True,
             'code': 'de',
             'hide_untranslated': False,
             'name': _('German'),
@@ -270,10 +254,9 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     # Customize this
-    ('fullwidth.html', 'Fullwidth'),
-    ('sidebar_left.html', 'Sidebar Left'),
-    ('sidebar_right.html', 'Sidebar Right'),
-    ('tpl_home.html', 'Home Template'),
+    ('fullwidth.html', 'Landing Template'),
+    ('content.html', 'Content Template'),
+    ('home.html', 'Home Template'),
 )
 
 
@@ -310,6 +293,24 @@ ALDRYN_STYLE_CLASS_NAMES = (
 # DOCS: https://github.com/divio/djangocms-text-ckeditor
 
 CKEDITOR_SETTINGS = {
-    'stylesSet': 'default:/static/js/addons/ckeditor.wysiwyg.js',
-    'contentsCss': ['/static/css/base.css'],
+    'contentsCss': [
+        '/static/css/style.css',
+        '/static/css/lwl.css',
+        '/static/css/fachbereich.css',
+        '/static/css/custom.css',
+    ],
+    'toolbar': [
+        ['Undo', 'Redo'],
+        ['cmsplugins', '-', 'ShowBlocks'],
+        ['Format', 'Styles'],
+        ['TextColor', 'BGColor', '-', 'PasteText', 'PasteFromWord'],
+        ['Maximize', ''],
+        '/',
+        ['Bold', 'Italic', 'Underline', '-', 'Subscript', 'Superscript', '-', 'RemoveFormat'],
+        ['Link', 'Unlink', 'Anchor'],
+        ['JustifyLeft', 'JustifyCenter', 'JustifyRight'],
+        ['HorizontalRule'],
+        ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Table'],
+        ['Source']
+    ]
 }

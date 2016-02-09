@@ -1,0 +1,23 @@
+{% load static sekizai_tags %}
+
+{# DOCS: http://getbootstrap.com/javascript/#carousel #}
+<div id="themen-slider" class="slider-flex themen-slider {{ instance.style }}">
+    <script>
+        $(document).ready(function() {
+          $('.themen-slider').flexslider({
+            animation:"slide",
+            slideshow:true,
+            prevText:"‹",
+            nextText:"›",
+            pauseOnHover: true,
+            slideshowSpeed:{{ instance.interval|default:1000 }}
+          });
+        });
+        </script>
+    <div class="flexslider">
+        <ul class="slides">
+            {% block content_carousel %}{% endblock %}
+        </ul>
+    </div><!-- /pub-slider -->
+</div>
+

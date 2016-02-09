@@ -5,14 +5,3 @@ env/
 node_modules/
 tests/coverage/
 
-# ignore copied files from:
-# https://github.com/divio/django-cms-explorer
-private/
-static/
-templates/
-tests/
-tools/
-.editorconfig
-browserslist
-gulpfile.js
-package.json

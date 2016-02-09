@@ -1,0 +1,30 @@
+{% load cms_tags %}
+
+{# INFO: slide for a SlideCMSPlugin instance #}
+<li class="item item{{ forloop.counter }}{% if forloop.first %} active{% endif %}{% if instance.classes %} {{ instance.classes }}{% endif %}">
+    {% with link=instance.get_link_url image=instance.image %}
+        <div class="zoomable">
+        {% if link %}
+            <a href="{{ link }}"{% if instance.link_target %} target="{{ instance.link_target }}"{% endif %}>
+                {% if image %}
+                    {% with image=instance.image srcset=carousel.srcset %}{% include 'aldryn_bootstrap3/plugins/carousel/standard/includes/image.html' %}{% endwith %}
+                {% else %}
+                    {{ instance.link_text }}
+                {% endif %}
+            </a>
+        {% elif image %}
+            {% with image=instance.image srcset=carousel.srcset %}{% include 'aldryn_bootstrap3/plugins/carousel/standard/includes/image.html' %}{% endwith %}
+        {% endif %}
+        </div>
+    {% endwith %}
+
+    <div class="eintrag" style="min-height: 58px; color: white !important; padding: 20px;">
+        {% if instance.content or instance.child_plugin_instances %}
+            <br><br>
+            {{ instance.content|safe }}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</li>

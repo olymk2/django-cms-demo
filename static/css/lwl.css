@@ -1,0 +1,499 @@
+@font-face {
+    font-family:'Open Sans';
+    src: url('/static/fonts/OpenSans-Regular.eot');
+    src: url('/static/fonts/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/OpenSans-Regular.woff') format('woff'),
+         url('/static/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:'Open Sans Bold';
+    src: url('/static/fonts/OpenSans-Bold.eot');
+    src: url('/static/fonts/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/OpenSans-Bold.woff') format('woff'),
+         url('/static/fonts/OpenSans-Bold.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:'Open Sans Semibold';
+    src: url('/static/fonts/OpenSans-Semibold.eot');
+    src: url('/static/fonts/OpenSans-Semibold.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/OpenSans-Semibold.woff') format('woff'),
+         url('/static/fonts/OpenSans-Semibold.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face {
+    font-family:'Open Sans Light';
+    src: url('/static/fonts/OpenSans-Light.eot');
+    src: url('/static/fonts/OpenSans-Light.eot?#iefix') format('embedded-opentype'),
+         url('/static/fonts/OpenSans-Light.woff') format('woff'),
+         url('/static/fonts/OpenSans-Light.ttf') format('truetype');
+    font-weight:normal;
+    font-style:normal;
+}
+
+* {
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+}
+
+body {
+  background-color:#fff;
+  font-family:'Open Sans', trebuchet ms, verdana, arial, helvetica, sans-serif;
+  color:#333;
+}
+
+strong {
+  font-family:Open Sans Bold, Open Sans, trebuchet ms, sans-serif;
+  font-weight:normal;
+}
+
+#maincontent, #lwl-portal #content {
+  width:100%;
+}
+
+#hauptmenue, #mainnav, #stepnav, #sidebar {
+  background-color:transparent;
+}
+
+/* sprite-positionierung ueberblick */
+
+.lwl-info a:before, .lang a:before, .font-size a:before, .contact .phone span:before,
+.imprint .feat li a:before, .zahlenliste li a:after, #content .termine dl dd a:after,
+.linkbox h3:after, .linguatec:before, .sprites {
+  background:url(/static/img/lwl-icons-sprite.png) 0 0 no-repeat transparent;
+}
+
+/* Hauptmenue */
+
+#lwl-header #mainnav {
+  border:0;
+  height:48px;
+  line-height:48px;
+  margin:0;
+  padding:0;
+  background-color:#e7e7e8;
+}
+
+#hauptmenue {
+  border:0;
+  margin:0;
+}
+
+#mainnav li a {
+  color:#1c316a;
+  display:inline-block;
+  line-height:2.125;
+}
+
+#mainnav .home a {
+  background-position:-233px -865px;
+  width:30px;
+  height:100%;
+}
+
+#mainnav li a:hover {
+  font-family:Open Sans Bold, Open Sans, trebuchet ms, sans-serif;
+  text-decoration:none;
+  color:#878185;
+}
+
+#mainnav li {
+  font-size:1.25em;
+  height:48px;
+}
+
+#mainnav li a.aktiv {
+  color:#1c316a;
+  border-bottom:3px solid #9b182a;
+  background-color:transparent;
+}
+
+/* neue breiten (30.06.14): */
+
+#rahmen {
+  max-width:80em;
+}
+
+#header {
+  background-color:#fff;
+  border:0;
+  margin-bottom:0;
+}
+
+#breadcrumb {
+  display:block;
+  margin:0 auto 24px;
+  border-bottom:1px solid #c1c1c2;
+  width:100%;
+  height:48px;
+  padding:15px 0 0;
+  font-family:inherit;
+}
+
+#breadcrumb li a {
+  font-family:Open Sans Semibold, Open Sans, trebuchet ms, sans-serif;
+  /*font-weight:bold;*/
+  color:#00325f;
+}
+
+#breadcrumb li:after {
+  content:"\203a";
+}
+
+#maincontent {
+ width:77.34375%;
+  margin:0 auto;
+}
+
+.stepnav ul li, .stepnav ul ul li, .stepnav ul ul {
+  border-top:1px solid #c1c1c2;
+  border-bottom:0;
+  position:relative;
+}
+
+#navi_div li:first-child {
+  border-top:0;
+}
+
+#navi_div ul:first-child {
+  border-bottom:1px solid #c1c1c2;
+}
+
+.stepnav ul ul li {
+  padding:0;
+}
+
+.stepnav ul li a, .stepnav ul li strong {
+  padding:6px 17px 6px 6px;
+  -webkit-hyphens:auto;
+  -moz-hyphens:auto;
+  -ms-hyphens:auto;
+  hyphens:auto;
+}
+
+.stepnav ul li strong {
+  background-color:#9b182a;
+  color:#fff;
+  font:100%/1.25 Open Sans Semibold, Open Sans, trebuchet ms, sans-serif;
+}
+
+.stepnav ul, .topic p {
+  font-family:inherit;
+}
+
+.stepnav .subnav-5 {
+  background-color:#c1c1c2;
+}
+
+.stepnav .subnav-4 {
+  background-color:#d7d7d8;
+}
+
+.stepnav .subnav-3 {
+  background-color:#e7e7e8;
+}
+
+.stepnav .subnav-2 {
+  background-color:#f5f5f6;
+}
+
+.stepnav .subnav-3 li, .stepnav .subnav-4 li, .stepnav ul .subnav-4, .stepnav .subnav-5 li {
+  border-bottom:0;
+  border-top:1px solid #fff;
+}
+.stepnav ul li.opennav > a {
+    font-family:'Open Sans Semibold';
+}
+.stepnav ul li.opennav:after, .stepnav ul li.currentnav:after {
+  content:" \25be";
+  font-size:100%;
+  color:#878185;
+  position:absolute;
+  right:4px;
+  top:0;
+}
+.stepnav ul li.currentnav:after {
+  color:#fff;
+}
+
+.stepnav ul[class*="subnav-"] li:first-child,
+.stepnav ul ul[class*="subnav-"] li:first-child {
+  border-bottom:0;
+}
+
+.article h2, .eintrag h2, body.cke_editable h2 {
+  font:2em/1.5 Open Sans Light, Open Sans, sans-serif;
+  color:#333;
+}
+
+.article h3, .eintrag h3, body.cke_editable h3 {
+  font-family:inherit;
+  font-size:100%;
+  line-height:1.5;
+  color:#333;
+}
+
+.eintrag p, body.cke_editable p {
+  font-size:100%;
+}
+
+#fullwidth-content .column p {
+  font-size: 100%;
+}
+
+.contact {
+  background-color:#00325f;
+  color:#fff;
+  padding:0 16.875%;
+  height:240px;
+  text-align:justify;
+}
+
+.contact:after, .social ul:after {
+  content:"";
+  display:inline-block;
+  width:100%;
+}
+
+.contact li {
+  display:inline-block;
+  line-height:1.75;
+  width:34%;
+}
+
+.contact li a {
+  color:#fff;
+}
+
+.contact li a:hover {
+  text-decoration:underline;
+}
+
+/*.contact .adr {
+  width:37%;
+}*/
+
+.contact .adr h2 {
+  font:normal 2em Open Sans Light, trebuchet ms, sans-serif;
+  margin-top:40px;
+}
+
+.contact .phone {
+  width:auto;
+  margin:0 1%;
+}
+
+.contact .phone span:before {
+  content:"";
+  width:24px;
+  height:22px;
+  background-position: -135px -828px;
+  margin-right:6px;
+  display:inline-block;
+  vertical-align:bottom;
+}
+
+.contact .phone .fax:before {
+  background-position: -135px -856px;
+}
+
+.contact .phone .mail:before {
+  background-position: -135px -883px;
+}
+
+.contact .social {
+  width:auto;
+}
+
+.contact .social li a {
+  display:inline-block;
+  width:100%;
+  height:100%;
+}
+
+.contact .social ul li {
+  height:72px;
+  width:72px;
+  text-align:center;
+  vertical-align:bottom;
+  position:relative;
+}
+
+.contact .social ul li a {
+  background-position: -100px -620px;
+  background-color:#00325f;
+}
+
+.contact .social ul li a:hover {
+  background-position:-496px -620px;
+}
+
+.contact .social ul li:after {
+  display:none;
+  content:" "attr(title)" ";
+  font-size:87.5%;
+  color:#333;
+  background-color:#e7e7e8;
+  position:absolute;
+  bottom:-49px;
+  left:10px;
+  width:200px;
+  padding:5px;
+}
+
+.contact .social ul li:before {
+  content:"";
+  display:none;
+  border:10px solid #e7e7e8;
+  border-color:transparent transparent #e7e7e8 transparent;
+  position:absolute;
+  bottom:-15px;
+  left:25px;
+}
+
+.contact .social ul li:hover:before,
+.contact .social ul li:hover:after {
+  display:block;
+}
+
+.contact .social ul .tw {
+  margin:0 21px;
+}
+
+.contact .social ul .tw a {
+  background-position: 0 -620px;
+}
+
+.contact .social ul .tw a:hover {
+  background-position: -400px -620px;
+}
+
+.contact .social ul .yt a {
+  background-position: -200px -620px;
+}
+
+.contact .social ul .yt a:hover {
+  background-position: -596px -620px;
+}
+
+.contact .social ul li a span {
+  visibility:hidden;
+}
+
+#imprint {
+  background-image:none;
+  background-color:#e7e7e8;
+  margin:0;
+  height:64px;
+  padding:0 40px;
+}
+
+#imprint > li {
+  font-family:inherit;
+  line-height:6;
+}
+
+#imprint ul li a {
+  padding:0;
+}
+
+#imprint li.copy {
+  width:21%;
+}
+
+#imprint li.feat {
+  width:39%;
+  text-align:center;
+}
+
+#imprint li.info {
+  width:40%;
+  text-align:right;
+}
+
+/* Elemente in Pages mit Refresh-Font */
+
+.eintrag ul, eintrag ol, .eintrag p, #content table, .article .eintrag .fliesstext, .linklist ul, .toc ul, body.cke_editable {
+  font:100%/1.75 Open Sans, Trebuchet MS, verdana, arial, helvetica, sans-serif;
+}
+
+.sidebar-block ul, .sidebar-block ol, .sidebar-block p, .sidebar-block .fliesstext {
+  font:87.5%/1.4285 Open Sans, Trebuchet MS, verdana, arial, helvetica, sans-serif;
+}
+
+/* neue Elemente */
+
+.video {
+  border: medium none;
+  position: relative;
+  width: 100%;
+}
+
+.video iframe, .video object, .video embed {
+  border: medium none;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* sidebar */
+
+#sidebar, .sidebar-block {
+  background-color:#e7e7e8;
+  -webkit-hyphens:auto;
+  -moz-hyphens:auto;
+  -ms-hyphens:auto;
+  hyphens:auto;
+}
+
+.sidebar-inner {
+  border-top:1px solid #c1c1c2;
+  padding-top:24px;
+}
+
+.sidebar-block:first-child .sidebar-inner {
+  border:0;
+  padding-top:0;
+}
+
+.sidebar-block h3 {
+  font-size:106.25%;
+}
+
+/* linguatec reader */
+
+.vrweb_hover_popup {
+  z-index:1001!important;
+}
+
+.linguatec:before {
+  background-position: -452px -700px;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 32px;
+}
+
+.linguatec {
+  display: inline-block;
+  height: 32px;
+  line-height: 2;
+  position: relative;
+  text-align: right;
+  width: 192px;
+}
+
+.linguatec em {
+  font-style:normal;
+}

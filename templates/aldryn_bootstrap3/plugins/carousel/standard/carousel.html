@@ -1,0 +1,11 @@
+{% extends "aldryn_bootstrap3/plugins/carousel/base.html" %}
+{% load i18n cms_tags %}
+
+{% block content_carousel %}
+{% with carousel=instance %}
+    {# Wrapper for slides #}
+    {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+    {% endfor %}
+{% endwith %}
+{% endblock content_carousel %}
