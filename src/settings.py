@@ -214,6 +214,7 @@ CMS_PLACEHOLDER_CONF = {}
 
 LANGUAGES = (
     ('de', _('Deutsch')),
+    ('en', _('English')),
 )
 
 PARLER_LANGUAGES = {
@@ -254,9 +255,11 @@ CMS_LANGUAGES = {
 
 CMS_TEMPLATES = (
     # Customize this
-    ('fullwidth.html', 'Landing Template'),
     ('content.html', 'Content Template'),
+    ('fullwidth.html', 'Landing Template'),
     ('home.html', 'Home Template'),
+    ('intro.html', 'Intro'),
+    ('outro.html', 'Outro'),
 )
 
 

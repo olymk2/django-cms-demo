@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles cms_tags %}
+
+{% block extrahead %}
+    <link rel="stylesheet" type="text/css" media="screen,projection" href="{% static 'css/blog.css' %}" />
+{% endblock %}
+
+{% block layout %}
+<div id="header-rahmen">
+    <div id="header">
+        <a href="#" class="extra"><img src="/static/img/blog/richtung-inklusion.png" alt="Richtung Inklusion" /></a>
+        <h1 id="quadrat_claim_logo">
+            <span id="lwl-logo"><span>LWL</span> <a href="/"><img src="/static/img/blog/logo.png" alt="LWL-Logo" width="136" height="30" /></a></span>
+            <span id="lwl-claim"><span>Für die Menschen. Für Westfalen-Lippe</span> <a href="/"><img src="/static/img/blog/claim.png" alt="Für die Menschen. Für Westfalen-Lippe." width="265" height="20" /></a></span>
+        </h1>
+    </div>
+</div><!-- /header -->
+<div id="rahmen">
+    <a class="skip" href="#mainnav" tabindex="1">Zur Hauptnavigation</a>
+    <a class="skip" href="#stepnav" tabindex="2">Zur Seitennavigation</a>
+    <a class="skip" href="#content" tabindex="3">Zum Inhalt</a>
+    <!--UdmComment-->
+    <div id="stepnav">
+        <div id="unten_links"></div>
+	</div>
+	<div id="maincontent">
+		<img src="/static/img/blog/header-blog.jpg" alt="Richtung Inklusion" />
+
+
+<!--/UdmComment-->
+	<div id="content">
+	<h2 class="operator">Aktuelle Meldungen</h2>
+        {% block content %}{% endblock %}
+	</div><!-- /content -->
+<!--UdmComment-->
+	<div id="sidebar">
+	    <div>
+        <div class="sidebar-block newsletter">
+        <div class="sidebar-inner">
+        <form method="post" action="#">
+        <fieldset>
+        <input type="text" name="email" value="E-Mail-Adresse" onblur="if(this.value=='')this.value='E-Mail-Adresse';" onfocus="if(this.value=='E-Mail-Adresse')this.value='';" />
+        <input type="submit" class="submit" name="email-button" value="Abonnieren" />
+        </fieldset>
+        </form>
+        <p>
+        <a href="mailto:None-leave@list.lwl.org">Abo beenden</a>
+        </p>
+        </div>
+        </div>
+        <div class="sidebar-block image">
+        <div class="sidebar-inner">
+        <div class="img p_foto">
+        <div class="zoomable">
+        <a target="_self" href="/LWL/Soziales/Richtung-Inklusion" class="link">
+            <img class="image-url" src="/static/img/blog/inklusion_pc.jpg" alt="Grafik eines Computers mit dem Logo &quot;Richtung Inklusion&quot;" title="Grafik eines Computers mit dem Logo &quot;Richtung Inklusion&quot;" />
+        </a>
+            <a href="#" class="zoom popup"><em title="öffnet vergrößerte Bildansicht">+</em></a>
+        </div>
+        </div>
+        <p class="link detail_text">
+        <a title="Zurück zum Inklusionsportal" target="_self" href="/">Zurück zum<br>Inklusionsportal</a>
+        </p>
+        </div>
+        </div>
+            <div id="filter-section" class="sidebar-block filter">
+                <div class="sidebar-inner">
+                    <h3><a href="/">Zur Startseite</a></h3>
+
+                    {% static_placeholder "blog_sidebar" %}
+                </div>
+            </div><!-- /filter-section -->
+	    </div>
+	</div><!-- /sidebar -->
+	</div><!-- /maincontent -->
+    <!--/UdmComment-->
+</div><!-- /rahmen -->
+
+{% endblock %}

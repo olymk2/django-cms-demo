@@ -1,0 +1,36 @@
+{% load i18n staticfiles thumbnail cms_tags apphooks_config_tags %}
+
+<div class="article blogentry plain-text
+    {% if article.is_featured %} featured{% endif %}
+    {% if not article.published %} unpublished{% endif %}">
+
+    <br>
+
+    <div class="eintrag">
+        <a href="{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}">
+            <img src="{% thumbnail article.featured_image.image 800x450 crop subject_location=article.featured_image.subject_location %}" alt="{{ article.featured_image.alt }}">
+        </a>
+
+        <p class="date"><span>{{ article.publishing_date|date }}</span></p>
+        <h2><a href="{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}">{% render_model article "title" %}</a></h2>
+
+        <h3>{% render_model article "lead_in" %}</h3>
+        <div class="fliesstext">
+            {% if detail_view %}
+                {% render_placeholder article.content language placeholder_language %}
+            {% else %}
+                {% render_placeholder article.content language placeholder_language as real_content %}
+                {{ real_content|truncatewords:"50" }}
+            {% endif %}
+        </div>
+
+        <p><a href="{% namespace_url 'article-detail' article.slug namespace=namespace default='' %}">mehr...</a></p>
+    </div>
+
+    <div class="socialize">
+        <span style="font-size: 12px;">Kategorien: </span>
+        {% for category in article.categories.all %}
+            <a href="{% namespace_url 'article-list-by-category' category.slug namespace=namespace default='' %}" style="font-size:12px;">{{ category.name }}</a><span style="font-size: 12px;">{% if not forloop.last %}, {% endif %}</span>
+        {% endfor %}
+    </div>
+</div>

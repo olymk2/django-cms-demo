@@ -19,11 +19,13 @@
     <!--/UdmComment-->
     <div id="content">
         <div class="article img-fullwidth" id="anker-0">
-            {% placeholder "content" or %}
-                <div class="eintrag l_text">
-                    {% include "includes/message-content.html" %}
-                </div>
-            {% endplaceholder %}
+            <div class="eintrag l_text">
+                {% placeholder "content" or %}
+                    <div class="eintrag l_text">
+                        {% include "includes/message-content.html" %}
+                    </div>
+                {% endplaceholder %}
+            </div>
         </div>
     </div><!-- /content -->
 

@@ -1,6 +1,7 @@
 {% load static sekizai_tags %}
 
 {# DOCS: http://getbootstrap.com/javascript/#carousel #}
+{% if not request.toolbar.edit_mode %}
 <div id="themen-slider" class="slider-flex themen-slider {{ instance.style }}">
     <script>
         $(document).ready(function() {
@@ -16,8 +17,10 @@
         </script>
     <div class="flexslider">
         <ul class="slides">
+        {% endif %}
             {% block content_carousel %}{% endblock %}
+{% if not request.toolbar.edit_mode %}
         </ul>
     </div><!-- /pub-slider -->
 </div>
-
+{% endif %}

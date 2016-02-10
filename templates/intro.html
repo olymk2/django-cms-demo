@@ -1,0 +1,71 @@
+{% load i18n static cms_tags menu_tags sekizai_tags %}
+<!DOCTYPE html>
+<html class="no-js" lang="de">
+<head>
+    <title>{{ request.site.name }} | {% page_attribute page_title %}</title>
+    <meta name="robots" content="index,follow " />
+    <meta name="Date" content="2015-10-08" />
+    <link rel="SHORTCUT ICON" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.fancybox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lwl-video-js.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lwl.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fachbereich.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+
+    <style>
+        body {
+            color: #fff;
+            font-family: "Museo Sans W01","Museo Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+            background: #0bf;
+            font-size: 200%;
+        }
+        #rahmen {
+            padding: 100px;
+        }
+        h1 {
+            font-weight: 100;
+            margin-bottom: 40px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 10px;
+            font-weight: 300;
+        }
+        p {
+            font-weight: 400;
+            padding-bottom: 20px;
+        }
+        li {
+            display: block;
+            padding: 10px 55px;
+            background: url('/static/img/bullet.svg') no-repeat left center;
+            background-size: 1.2em;
+        }
+    </style>
+    {% render_block "css" %}
+    {% render_block "js" %}
+    {% block extrahead %}{% endblock %}
+    {% block extrafoot %}{% endblock %}
+    {{ ALDRYN_SNAKE.render_tail }}
+    {{ ALDRYN_SNAKE.render_head }}
+</head>
+<body id="page" class="">
+{% cms_toolbar %}
+<div id="rahmen" class="page-der-lwl-im-ueberblick level-1">
+
+    {% placeholder "content" or %}
+        <h1>django CMS Demo</h1>
+        <p>Themenbereiche</p>
+        <ul>
+            <li>Benutzerverwaltung</li>
+            <li>Seiten anlegen, bearbeiten und publizieren</li>
+            <li>Darstellung von Funktionalitäten</li>
+        </ul>
+    {% endplaceholder %}
+
+<!-- End Piwik Tracking Code-->
+</body>
+</html>

@@ -42,11 +42,13 @@
 </head>
 <body id="page" class="">
 {% cms_toolbar %}
+{% block layout %}
 <div id="rahmen" class="page-der-lwl-im-ueberblick level-1">
     <a class="skip" href="#mainnav" tabindex="1">Zur Hauptnavigation</a>
     <a class="skip" href="#stepnav" tabindex="2">Zur Seitennavigation</a>
     <a class="skip" href="#content" tabindex="3">Zum Inhalt</a>
     <!--UdmComment-->
+    {% block header %}
     <div id="header">
         <div id="lwl-header" class="custom">
             <ul class="features">
@@ -77,11 +79,13 @@
             </div><!-- /hauptmenue -->
         </div><!-- /lwl-header -->
     </div><!-- /header -->
+    {% endblock header %}
 
     <div id="maincontent">
         {% block content %}{% endblock content %}
     </div>
 
+    {% block footer %}
     <div id="footer" class="seitenfuss">
         <ul id="imprint" class="imprint">
             <li class="first copy">&copy; Landschaftsverband Westfalen-Lippe (LWL)</li>
@@ -101,8 +105,10 @@
             </li>
         </ul>
     </div><!-- /footer -->
+    {% endblock footer %}
     <!--/UdmComment-->
 </div><!-- /rahmen -->
+{% endblock layout %}
 
 <!-- End Piwik Tracking Code-->
 </body>

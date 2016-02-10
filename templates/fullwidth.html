@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 {% load i18n cms_tags %}
 
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
 {% block content %}
     {% placeholder content or %}
 	<div id="content">
         <div class="article img-fullwidth" id="anker-0">
             {% placeholder "content" or %}
-                <h2><span>Startseite</span></h2>
+                <h2><span>Marketing Seite</span></h2>
                 <p>Hier könnte Ihr Inhalt stehen.</p>
             {% endplaceholder %}
         </div>

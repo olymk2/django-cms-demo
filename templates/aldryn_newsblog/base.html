@@ -1,0 +1,21 @@
+{% extends "blog.html" %}
+{% load sekizai_tags %}
+
+{% block content %}
+    {% block newsblog_content %}
+        {# article_list.html and article_detail.html extend this template #}
+    {% endblock %}
+
+{% addtoblock "js" %}
+<script>
+$(document).ready(function () {
+    $('.cms-toolbar-item li a').each(function () {
+        if ($(this).text().trim() === 'untitled') {
+            $(this).text('Blog');
+        }
+    });
+});
+</script>
+{% endaddtoblock %}
+
+{% endblock content %}

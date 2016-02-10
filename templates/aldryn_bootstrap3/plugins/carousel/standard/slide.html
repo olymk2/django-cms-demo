@@ -1,6 +1,7 @@
 {% load cms_tags %}
 
 {# INFO: slide for a SlideCMSPlugin instance #}
+{% if not request.toolbar.edit_mode %}
 <li class="item item{{ forloop.counter }}{% if forloop.first %} active{% endif %}{% if instance.classes %} {{ instance.classes }}{% endif %}">
     {% with link=instance.get_link_url image=instance.image %}
         <div class="zoomable">
@@ -28,3 +29,6 @@
         {% endif %}
     </div>
 </li>
+{% else %}
+{% with image=instance.image srcset=carousel.srcset %}{% include 'aldryn_bootstrap3/plugins/carousel/standard/includes/image.html' %}{% endwith %}
+{% endif %}
