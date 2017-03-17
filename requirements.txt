@@ -1,9 +1,8 @@
-Django>=1.8.8,<1.9
-django-reversion>=1.8.2,<1.8.6
-# django-reversion>=1.10,<1.11
-psycopg2>=2.6.1  # required for django.db.backends.postgresql_psycopg2
+Django
+django-reversion>=1.10,<1.11
+#ipsycopg2>=2.6.1  # required for django.db.backends.postgresql_psycopg2
 # https://github.com/divio/djangocms-text-ckeditor/pull/335
-html5lib>=0.90,!=0.9999,!=0.99999,<0.99999999
+html5lib
 
 # we can modify the django CMS installation at will to test certain features
 https://github.com/divio/django-cms/archive/develop.zip#egg=django-cms
@@ -12,22 +11,22 @@ https://github.com/divio/django-cms/archive/develop.zip#egg=django-cms
 # this file will always use the latest master (which might be unreleased)
 
 # core addons
-https://github.com/divio/djangocms-admin-style/archive/master.zip#egg=djangocms-admin-style
-https://github.com/divio/django-filer/archive/develop.zip#egg=django-filer
-https://github.com/divio/cmsplugin-filer/archive/develop.zip#egg=cmsplugin-filer
-https://github.com/divio/djangocms-text-ckeditor/archive/master.zip#egg=djangocms-text-ckeditor
+#https://github.com/divio/djangocms-admin-style/archive/master.zip#egg=djangocms-admin-style
+#https://github.com/divio/django-filer/archive/develop.zip#egg=django-filer
+#https://github.com/divio/cmsplugin-filer/archive/develop.zip#egg=cmsplugin-filer
+#https://github.com/divio/djangocms-text-ckeditor/archive/master.zip#egg=djangocms-text-ckeditor
 # https://github.com/divio/djangocms-text-ckeditor/archive/develop.zip#egg=djangocms-text-ckeditor
 
 # essential addons
-https://github.com/aldryn/aldryn-newsblog/archive/master.zip#egg=aldryn-newsblog
-https://github.com/aldryn/aldryn-people/archive/master.zip#egg=aldryn-people
-https://github.com/aldryn/aldryn-events/archive/master.zip#egg=aldryn-events
-https://github.com/aldryn/aldryn-faq/archive/master.zip#egg=aldryn-faq
-https://github.com/aldryn/aldryn-jobs/archive/master.zip#egg=aldryn-jobs
-https://github.com/aldryn/aldryn-categories/archive/master.zip#egg=aldryn-categories
+#https://github.com/aldryn/aldryn-newsblog/archive/master.zip#egg=aldryn-newsblog
+#https://github.com/aldryn/aldryn-people/archive/master.zip#egg=aldryn-people
+#https://github.com/aldryn/aldryn-events/archive/master.zip#egg=aldryn-events
+#https://github.com/aldryn/aldryn-faq/archive/master.zip#egg=aldryn-faq
+#https://github.com/aldryn/aldryn-jobs/archive/master.zip#egg=aldryn-jobs
+#https://github.com/aldryn/aldryn-categories/archive/master.zip#egg=aldryn-categories
 
 # other addons
-https://github.com/aldryn/aldryn-bootstrap3/archive/master.zip#egg=aldryn-bootstrap3
-https://github.com/aldryn/aldryn-forms/archive/master.zip#egg=aldryn-forms
-https://github.com/aldryn/aldryn-style/archive/master.zip#egg=aldryn-style
-https://github.com/aldryn/aldryn-locations/archive/master.zip#egg=aldryn-locations
+#https://github.com/aldryn/aldryn-bootstrap3/archive/master.zip#egg=aldryn-bootstrap3
+#https://github.com/aldryn/aldryn-forms/archive/master.zip#egg=aldryn-forms
+#https://github.com/aldryn/aldryn-style/archive/master.zip#egg=aldryn-style
+#https://github.com/aldryn/aldryn-locations/archive/master.zip#egg=aldryn-locations
